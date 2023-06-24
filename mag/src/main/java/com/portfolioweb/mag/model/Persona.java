@@ -2,12 +2,9 @@
 package com.portfolioweb.mag.model;
 
 import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.List;
+import javax.persistence.*;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,6 +29,17 @@ public class Persona implements Serializable {
     @Column(name = "banner_info", length = 1000, nullable = false)
     private String bannerPic;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idEdu")
+    private List<Education> educationList;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idExp")
+    private List<Experience> experienceList;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idPro")
+    private List<Project> projectList;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idSkill")
+    private List<Skill> skillsList;
     public Persona() {
     }
 
